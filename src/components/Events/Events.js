@@ -1,7 +1,27 @@
 import React, { Fragment } from "react";
 import classes from "./Events.module.scss";
 
-const Events = ({ eventData }) => {
+const Events = ({ eventData, filterColor }) => {
+  let arrEvents = [];
+
+  if (filterColor === "a-å") {
+    arrEvents.push(1);
+  }
+
+  if (arrEvents.length > 0) {
+    console.log("!!");
+    eventData.map((e) => {
+      let title = e.title;
+      arrEvents.push(title);
+    });
+
+    arrEvents.sort(function (a, b) {
+      return a.localeCompare(b); //using String.prototype.localCompare()
+    });
+  }
+
+  console.log(arrEvents);
+
   return (
     <Fragment>
       {eventData &&
@@ -10,6 +30,18 @@ const Events = ({ eventData }) => {
           if (event.id === "1") {
             return "";
           }
+          // Filter
+          // Value from EventList/handleColorFilter()
+          // If stage_name === stage_name => filter out that scene with corresponding color
+          if (event.stage_name.toLowerCase() === filterColor) {
+            return "";
+          }
+
+          //   switch (event.stage_name.toLowerCase() === killd) {
+          //     case "rød scene" :
+          //       return;
+          //   }
+
           // Set Time
           const timestamp = event.datetime;
           const time = new Intl.DateTimeFormat("en-DK", {
