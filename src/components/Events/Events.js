@@ -2,25 +2,25 @@ import React, { Fragment } from "react";
 import classes from "./Events.module.scss";
 
 const Events = ({ eventData, filterColor }) => {
-  let arrEvents = [];
+//   let arrEvents = [];
 
-  if (filterColor === "a-å") {
-    arrEvents.push(1);
-  }
+//   if (filterColor === "a-å") {
+//     arrEvents.push(1);
+//   }
 
-  if (arrEvents.length > 0) {
-    console.log("!!");
-    eventData.map((e) => {
-      let title = e.title;
-      arrEvents.push(title);
-    });
+//   if (arrEvents.length > 0) {
+//     console.log("!!");
+//     eventData.map((e) => {
+//       let title = e.title;
+//       arrEvents.push(title);
+//     });
 
-    arrEvents.sort(function (a, b) {
-      return a.localeCompare(b); //using String.prototype.localCompare()
-    });
-  }
+//     arrEvents.sort(function (a, b) {
+//       return a.localeCompare(b); //using String.prototype.localCompare()
+//     });
+//   }
 
-  console.log(arrEvents);
+//   console.log(arrEvents);
 
   return (
     <Fragment>

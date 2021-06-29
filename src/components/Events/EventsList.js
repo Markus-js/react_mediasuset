@@ -1,7 +1,7 @@
 import classes from "./Events.module.scss";
 import React, { useState, useEffect } from "react";
 import { fetch2api } from "../../helpers/helper";
-import Events from "./Events";
+import EventsFilter from "./EventsFilter";
 
 const EventsList = () => {
   const [eventData, setEventData] = useState();
@@ -28,9 +28,11 @@ const EventsList = () => {
     setFilterColor(filterColorValue)
   }
 
+
   return (
     <section>
       <div>
+      <button onClick={() => handleColorFilter("a-å")} >A-Å</button>
          {/* Set scene color to be filtered out */}
          <button onClick={() => handleColorFilter("rød scene")} >RØD SCENE</button>
          <button onClick={() => handleColorFilter("blå scene")} >BLÅ SCENE</button>
@@ -38,8 +40,10 @@ const EventsList = () => {
          <button onClick={() => handleColorFilter("lilla scene")} >LILLA SCENE</button>
       </div>
       <main className={classes.container}>
-        <Events eventData={eventData} filterColor={filterColor} />
-      </main> 
+        {/* <Events eventData={eventData} filterColor={filterColor} /> */}
+        
+        <EventsFilter eventData={eventData} filterColor={filterColor} />
+      </main>
     </section>
   );
 };
