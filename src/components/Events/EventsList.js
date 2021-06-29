@@ -16,9 +16,16 @@ const EventsList = () => {
     getEventData();
   }, []);
 
+  
+
   return (
-    <section className={classes.container}>
-      <Events eventData={eventData} />
+    <section>
+      <div>
+        <button>RØD SCENE</button>
+      </div>
+      <main className={classes.container}>
+        <Events eventData={eventData} />
+      </main>
     </section>
   );
 };
