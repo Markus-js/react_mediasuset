@@ -2,10 +2,15 @@ import classes from "./Events.module.scss";
 import React, { useState, useEffect } from "react";
 import { fetch2api } from "../../helpers/helper";
 import EventsFilter from "./EventsFilter";
+import Events from "./Events";
+import Modal from "./Modal/Modal";
 
 const EventsList = () => {
   const [eventData, setEventData] = useState();
   const [filterColor, setFilterColor] = useState();
+  const [toggle, setToggle] = useState();
+  // MODAL
+  const [returnCardID, setReturnCardID] = useState();
 
   const getEventData = async () => {
     const url = `https://api.mediehuset.net/mediesuset/events`;
@@ -25,24 +30,49 @@ const EventsList = () => {
           }
   */
   function handleColorFilter(filterColorValue) {
-    setFilterColor(filterColorValue)
+    setFilterColor(filterColorValue);
+    setToggle(false);
   }
-
+  function handleToggleSort(boolean) {
+    setToggle(boolean);
+  }
 
   return (
     <section>
       <div>
-      <button onClick={() => handleColorFilter("a-å")} >A-Å</button>
-         {/* Set scene color to be filtered out */}
-         <button onClick={() => handleColorFilter("rød scene")} >RØD SCENE</button>
-         <button onClick={() => handleColorFilter("blå scene")} >BLÅ SCENE</button>
-         <button onClick={() => handleColorFilter("grøn scene")} >GRØN SCENE</button>
-         <button onClick={() => handleColorFilter("lilla scene")} >LILLA SCENE</button>
+        <button onClick={() => handleToggleSort(true)}>A-Å</button>
+        {/* Set scene color to be filtered out */}
+        <button onClick={() => handleColorFilter("")}>ALLE</button>
+        <button onClick={() => handleColorFilter("rød scene")}>
+          RØD SCENE
+        </button>
+        <button onClick={() => handleColorFilter("blå scene")}>
+          BLÅ SCENE
+        </button>
+        <button onClick={() => handleColorFilter("grøn scene")}>
+          GRØN SCENE
+        </button>
+        <button onClick={() => handleColorFilter("lilla scene")}>
+          LILLA SCENE
+        </button>
       </div>
       <main className={classes.container}>
         {/* <Events eventData={eventData} filterColor={filterColor} /> */}
-        
-        <EventsFilter eventData={eventData} filterColor={filterColor} />
+        {!toggle && (
+          <Events
+            eventData={eventData}
+            filterColor={filterColor}
+            setReturnCardID={setReturnCardID}
+          />
+        )}
+        {toggle && <EventsFilter eventData={eventData} />}
+
+        {returnCardID && (
+          <Modal
+            returnCardID={returnCardID}
+            setReturnCardID={setReturnCardID}
+          />
+        )}
       </main>
     </section>
   );

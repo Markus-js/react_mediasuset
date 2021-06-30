@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
-import classes from "./Events.module.scss";
 
 const Events = ({ eventData, filterColor }) => {
   let arrEvents = [];
-
+  let arrIndex = []
   
 
    if(eventData) {
@@ -19,30 +18,26 @@ const Events = ({ eventData, filterColor }) => {
 
     arrEvents.map((e) => {
       const lastTwo = e.slice(-2);
-      arrEvents.push(lastTwo)
+      //arrIndex.push(parseInt(lastTwo))
+      arrIndex.push(e)
     })
-    
-   }
+
+      console.log(arrIndex)
+    }
+
+
 
   
 
-  console.log(arrEvents);
-
   return (
     <Fragment>
-      {eventData &&
-        eventData.map((event) => {
+      {arrIndex &&
+        arrIndex.map((i) => {
           
           
           return (
-            <div key={event.id} className={classes.card}>
-              <figure>
-                <img src={event.image} alt={event.title} />
-              </figure>
-              {/* Set bg color to switch case */}
-              <footer >
-                <h3>{event.title}</h3>
-              </footer>
+            <div key={i}>
+              <p>{i}</p>
             </div>
           );
         })}

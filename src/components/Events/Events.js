@@ -1,26 +1,30 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import classes from "./Events.module.scss";
 
-const Events = ({ eventData, filterColor }) => {
-//   let arrEvents = [];
+const Events = ({ eventData, filterColor, setReturnCardID }) => {
+  //   let arrEvents = [];
 
-//   if (filterColor === "a-å") {
-//     arrEvents.push(1);
-//   }
+  //   if (filterColor === "a-å") {
+  //     arrEvents.push(1);
+  //   }
 
-//   if (arrEvents.length > 0) {
-//     console.log("!!");
-//     eventData.map((e) => {
-//       let title = e.title;
-//       arrEvents.push(title);
-//     });
+  //   if (arrEvents.length > 0) {
+  //     console.log("!!");
+  //     eventData.map((e) => {
+  //       let title = e.title;
+  //       arrEvents.push(title);
+  //     });
 
-//     arrEvents.sort(function (a, b) {
-//       return a.localeCompare(b); //using String.prototype.localCompare()
-//     });
-//   }
+  //     arrEvents.sort(function (a, b) {
+  //       return a.localeCompare(b); //using String.prototype.localCompare()
+  //     });
+  //   }
 
-//   console.log(arrEvents);
+  //   console.log(arrEvents);
+
+  function handleModal(currentId) {
+    setReturnCardID(currentId)
+  }
 
   return (
     <Fragment>
@@ -79,7 +83,11 @@ const Events = ({ eventData, filterColor }) => {
               break;
           }
           return (
-            <div key={event.id} className={classes.card}>
+            <div
+              key={event.id}
+              className={classes.card}
+              onClick={() => handleModal(event.id)}
+            >
               <figure>
                 <img src={event.image} alt={event.title} />
               </figure>
