@@ -11,6 +11,7 @@ const EventsList = () => {
   const [toggle, setToggle] = useState();
   // MODAL
   const [returnCardID, setReturnCardID] = useState();
+  const [returnCardCOLOR, setReturnCardCOLOR] = useState();
 
   const getEventData = async () => {
     const url = `https://api.mediehuset.net/mediesuset/events`;
@@ -63,6 +64,7 @@ const EventsList = () => {
             eventData={eventData}
             filterColor={filterColor}
             setReturnCardID={setReturnCardID}
+            setReturnCardCOLOR={setReturnCardCOLOR}
           />
         )}
         {toggle && <EventsFilter eventData={eventData} />}
@@ -71,6 +73,7 @@ const EventsList = () => {
           <Modal
             returnCardID={returnCardID}
             setReturnCardID={setReturnCardID}
+            returnCardCOLOR={returnCardCOLOR}
           />
         )}
       </main>

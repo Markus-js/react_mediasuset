@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import classes from "./Events.module.scss";
 
-const Events = ({ eventData, filterColor, setReturnCardID }) => {
+const Events = ({ eventData, filterColor, setReturnCardID, setReturnCardCOLOR }) => {
   //   let arrEvents = [];
 
   //   if (filterColor === "a-å") {
@@ -22,8 +22,9 @@ const Events = ({ eventData, filterColor, setReturnCardID }) => {
 
   //   console.log(arrEvents);
 
-  function handleModal(currentId) {
+  function handleModal(currentId, SCENE_THEME) {
     setReturnCardID(currentId)
+    setReturnCardCOLOR(SCENE_THEME)
   }
 
   return (
@@ -86,7 +87,7 @@ const Events = ({ eventData, filterColor, setReturnCardID }) => {
             <div
               key={event.id}
               className={classes.card}
-              onClick={() => handleModal(event.id)}
+              onClick={() => handleModal(event.id, SCENE_THEME)}
             >
               <figure>
                 <img src={event.image} alt={event.title} />
